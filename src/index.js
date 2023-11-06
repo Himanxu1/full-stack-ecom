@@ -8,6 +8,9 @@ import Login from './pages/Login';
 import CreateProduct from './pages/CreateProduct';
 import { ThemeProvider } from "@material-tailwind/react";
 import EditProduct from './pages/EditProduct';
+import Profile from './pages/Profile';
+import Dashboard from './pages/Dashboard';
+import { UpdatedProductProvider } from './context';
 
 
 const appRouter = createBrowserRouter([
@@ -31,6 +34,14 @@ const appRouter = createBrowserRouter([
        {
         path:'/products/:productId',
         element:<EditProduct/>
+       },
+       {
+        path:'/profile',
+        element:<Profile/>
+       },
+       {
+        path:'/dashboard',
+        element:<Dashboard/>
        }
     ]
   }
@@ -41,7 +52,9 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <ThemeProvider>
+      <UpdatedProductProvider>
       <RouterProvider router={appRouter} />
+      </UpdatedProductProvider>
     </ThemeProvider>
   </React.StrictMode>
 );

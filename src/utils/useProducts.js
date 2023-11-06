@@ -1,13 +1,13 @@
 import { useState,useEffect } from "react"
 
-const useProducts = (setFilteredProducts) =>{
+const useProducts = (setFilteredProducts,updatedData) =>{
     const [products,setProducts] = useState([])
     const backend_url = process.env.REACT_APP_BACKEND_URI;
 
     const fetchProducts = async () =>{
       const data = await fetch(`${backend_url}api/products/get-all`,{
         headers:{
-          'x-auth-token':localStorage.getItem('token')
+          'Authorization':localStorage.getItem('token')
         }
     })
       const res = await data.json()
@@ -16,7 +16,7 @@ const useProducts = (setFilteredProducts) =>{
     }
     useEffect(()=>{
       fetchProducts()
-    },[])
+    },[updatedData])
     return products
 }
 

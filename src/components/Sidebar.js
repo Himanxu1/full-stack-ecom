@@ -9,12 +9,29 @@ import {
   PresentationChartBarIcon,
   ShoppingBagIcon,
   UserCircleIcon,
-  Cog6ToothIcon,
+  ChartBarIcon,
   PowerIcon,
 } from "@heroicons/react/24/solid";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import "react-toastify/dist/ReactToastify.css";
+import { toast } from 'react-toastify'
  
 export function Sidebar() {
+  const navigate = useNavigate()
+  const handleLogout = () =>{
+    toast('🦄 logged out!', {
+      position: "top-center",
+      autoClose: 1000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+      });
+    localStorage.removeItem('token');
+     navigate('/')
+  }
   return (
     <Card className="h-[calc(100vh-2rem)] w-full max-w-[20rem] p-4 shadow-xl shadow-blue-gray-900/5">
       <div className="mb-2 p-4">
@@ -39,20 +56,23 @@ export function Sidebar() {
           Add
         </ListItem>
           </Link>
-      
+      <Link to='/profile'>
         <ListItem>
           <ListItemPrefix>
             <UserCircleIcon className="h-5 w-5" />
           </ListItemPrefix>
-          Profile
+          Users
         </ListItem>
+      </Link>
+        <Link to='/dashboard'> 
         <ListItem>
           <ListItemPrefix>
-            <Cog6ToothIcon className="h-5 w-5" />
+            <ChartBarIcon className="h-5 w-5" />
           </ListItemPrefix>
-          Settings
+          Dashboard
         </ListItem>
-        <ListItem>
+        </Link>
+        <ListItem onClick={handleLogout}>
           <ListItemPrefix>
             <PowerIcon className="h-5 w-5" />
           </ListItemPrefix>
