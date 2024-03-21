@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { Card, Input, Button, Typography } from "@material-tailwind/react";
 import axios from "axios";
-import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
 import { CLOUDINARY_URL, CLOUDINARY_UPLOAD_PRESET } from "../utils/constants";
+import showToast from "../utils/toast/showToast";
 
 const CreateProduct = () => {
   const navigate = useNavigate();
@@ -46,16 +46,7 @@ const CreateProduct = () => {
       })
       .then((response) => {
         console.log(response);
-        toast("🦄 Product Added!", {
-          position: "top-center",
-          autoClose: 1000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "dark",
-        });
+       showToast('🦄 Product Added!')
         setName("");
         setPrice(0);
         setDescription("");

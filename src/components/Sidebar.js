@@ -14,21 +14,12 @@ import {
 } from "@heroicons/react/24/solid";
 import { Link, useNavigate } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
-import { toast } from 'react-toastify'
+import showToast from "../utils/toast/showToast";
  
 export function Sidebar() {
   const navigate = useNavigate()
   const handleLogout = () =>{
-    toast('🦄 logged out!', {
-      position: "top-center",
-      autoClose: 1000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "dark",
-      });
+   showToast('🦄 logged out!')
     localStorage.removeItem('token');
      navigate('/')
   }

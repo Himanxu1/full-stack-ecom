@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
 import {useFormik} from 'formik';
 import { loginSchema } from "../validation/UserValidation";
+import showToast from  '../utils/toast/showToast'
 
 const initialValues ={ 
   email:"",
@@ -23,16 +23,7 @@ const Login = () => {
      const data = values;
      axios.post(`${backend_url}api/auth/login`,data )
      .then((res) => {
-       toast("🦄 login Success!", {
-         position: "top-center",
-         autoClose: 1000,
-         hideProgressBar: false,
-         closeOnClick: true,
-         pauseOnHover: true,
-         draggable: true,
-         progress: undefined,
-         theme: "dark",
-       });
+     showToast('🦄 login Success')
        localStorage.setItem("token", res.data.token);
        navigate("/home");
      })
@@ -42,7 +33,8 @@ const Login = () => {
     }
   })
   return (
-    <div className="flex justify-center pt-20 bg-black w-full h-[100vh]">
+    <div className="flex flex-col items-center  pt-20 bg-black w-full h-[100vh]">
+      <h1 className="text-4xl text-white p-10 font-bold">Walter Admin Panel</h1>
       <div className="w-full max-w-xs ">
         <form
           className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"

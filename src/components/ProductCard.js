@@ -1,7 +1,7 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
 import { AiFillDelete } from 'react-icons/ai'
-import { ToastContainer, toast } from 'react-toastify'
+import { ToastContainer } from 'react-toastify'
 import "react-toastify/dist/ReactToastify.css";
 import {
   Card,
@@ -12,6 +12,7 @@ import {
   Button,
 } from "@material-tailwind/react";
 import { UpdatedProductContext } from '../context';
+import showToast from '../utils/toast/showToast';
 
 
 const ProductCard = (singleProduct) => {
@@ -29,16 +30,7 @@ const ProductCard = (singleProduct) => {
           'Authorization':localStorage.getItem('token')
         }})
         setUpdatedData(!updatedData)
-        toast('🦄 Product deleted!', {
-          position: "top-center",
-          autoClose: 1000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "dark",
-          });
+    showToast('🦄 Product deleted!')
       
     }
   

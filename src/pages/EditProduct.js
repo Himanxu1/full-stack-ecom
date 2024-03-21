@@ -2,9 +2,9 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { Card, Input, Button, Typography } from "@material-tailwind/react";
-import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { CLOUDINARY_UPLOAD_PRESET, CLOUDINARY_URL } from "../utils/constants";
+import showToast from "../utils/toast/showToast";
 const EditProduct = () => {
   
   const { productId } = useParams();
@@ -89,16 +89,7 @@ const EditProduct = () => {
         console.log(res);
       });
 
-    toast("🦄 Product Saved!", {
-      position: "top-center",
-      autoClose: 1000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "dark",
-    });
+  showToast('🦄 Product Saved')
     navigate("/home");
   };
 
